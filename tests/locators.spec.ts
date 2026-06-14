@@ -11,3 +11,13 @@ test("Click Get started link", async ({ page }) => {
 
     await expect(page).toHaveURL(/.*docs\/intro/)
 })
+
+test("Find Playwright heading", async ({ page }) => {
+    await page.goto("https://playwright.dev")
+
+    const heading = page.getByRole("heading", {
+        name: /Playwright enables reliable/
+    })
+
+    await expect(heading).toBeVisible()
+})
