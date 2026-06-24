@@ -31,3 +31,14 @@ test("Invalid Login", async ({ page }) => {
     await expect(page).toHaveURL(/login/)
     await expect(page.getByText("Your password is invalid!")).toBeVisible()
 })
+
+test("Logout", async ({ page }) => {
+    const securePage = await loginPage.login(
+        "tomsmith",
+        "SuperSecretPassword!"
+    )
+
+    await securePage.logout()
+
+    await expect(page).toHaveURL(/login/)
+})
