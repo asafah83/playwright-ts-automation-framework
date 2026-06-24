@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test"
+import { Page, Locator, expect } from "@playwright/test"
 import { LoginPage } from "./LoginPage"
 
 export class SecurePage {
@@ -15,13 +15,16 @@ export class SecurePage {
         this.logoutLink = page.getByRole("link", { name: "Logout" })
     }
     async getSuccessMessage() {
-        return await this.successMessage.textContent()
     }
     async logout() {
         await this.logoutLink.click()
         return new LoginPage(this.page)
 
     }
+
+    async expectLoaded() {
+    await expect(this.page).toHaveURL(/secure/)
+}
 
 
 }

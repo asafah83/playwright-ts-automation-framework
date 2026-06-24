@@ -17,6 +17,7 @@ test("Valid Login", async ({ page }) => {
     )
 
     await expect(page).toHaveURL(/secure/)
+    await securePage.expectLoaded()
 
     const message = await securePage.getSuccessMessage()
     expect(message).toContain("You logged into a secure area!")
@@ -42,3 +43,4 @@ test("Logout", async ({ page }) => {
 
     await expect(page).toHaveURL(/login/)
 })
+
